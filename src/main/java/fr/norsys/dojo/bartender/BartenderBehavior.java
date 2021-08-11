@@ -4,7 +4,7 @@ import java.util.Map;
 
 import static fr.norsys.dojo.bartender.OrderChoice.BAD_CHOICE;
 
-abstract class BartenderBehavior {
+public abstract class BartenderBehavior {
 
     protected final Bartender bartender;
 
@@ -12,15 +12,17 @@ abstract class BartenderBehavior {
 
     protected Map<OrderChoice, CommandProcess> commandProcessMap;
 
+    protected boolean wishHappyBirthday;
+
     BartenderBehavior(Bartender bartender, CommunicationInterface communicationInterface) {
         this.bartender = bartender;
         this.communicationInterface = communicationInterface;
-        this.initProcessesMap();
+        initProcessesMap();
     }
 
     protected abstract void initProcessesMap();
 
-    public void behave() {
+    public void react() {
         String input = communicationInterface.listenCommand();
         final OrderChoice choice = OrderChoice.getFromString(input);
         if (choice != BAD_CHOICE) {
@@ -28,6 +30,18 @@ abstract class BartenderBehavior {
         }
     }
 
-    public abstract void options();
+    public abstract void suggestOptions();
     public abstract void bye();
+
+    public Bartender getBartender() {
+        return bartender;
+    }
+
+    public CommunicationInterface getCommunicationInterface() {
+        return communicationInterface;
+    }
+
+    public boolean doesWishHappyBirthday() {
+        return wishHappyBirthday;
+    }
 }

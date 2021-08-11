@@ -13,8 +13,8 @@ public class Bartender {
     public void waitForCommands() {
 
         while (isServing) {
-            this.bartenderBehavior.options();
-            this.bartenderBehavior.behave();
+            this.bartenderBehavior.suggestOptions();
+            this.bartenderBehavior.react();
         }
         this.bartenderBehavior.bye();
     }

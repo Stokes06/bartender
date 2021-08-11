@@ -5,9 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
@@ -20,15 +17,15 @@ class BartenderTest {
 
     Bartender bartender;
 
-    ByteArrayOutputStream outputStream;
+    ByteArrayOutputStream bartenderResponsesStream;
 
     @BeforeEach
     void setUp() {
         orders = new ArrayDeque<>();
         bartender = new Bartender(orders::poll);
         // set up output written from System.out::println
-        outputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outputStream));
+        bartenderResponsesStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(bartenderResponsesStream));
     }
 
     @Test
@@ -38,8 +35,8 @@ class BartenderTest {
         orders.add("nothing");
         bartender.waitForCommands();
 
-        assertThat(outputStream.toString())
-                .contains("What you want to drink : beer or juice ? Or nothing if you want to go")
+        assertThat(bartenderResponsesStream.toString())
+                .contains("What you want to drink : beer or juice or soda ? Or nothing if you want to go")
                 .contains("Bartender gives you a nice juice, refreshing !")
                 .contains("Goodbye buddy");
     }
@@ -54,7 +51,7 @@ class BartenderTest {
         orders.add("nothing");
         bartender.waitForCommands();
 
-        assertThat(outputStream.toString())
+        assertThat(bartenderResponsesStream.toString())
                 .contains("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)")
                 .contains("Bartender gives you a beer, drink in moderation !")
                 .contains("Goodbye buddy");
@@ -71,7 +68,7 @@ class BartenderTest {
         orders.add("nothing");
         bartender.waitForCommands();
 
-        assertThat(outputStream.toString())
+        assertThat(bartenderResponsesStream.toString())
                 .contains("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)")
                 .contains("You can't have a beer kiddo")
                 .contains("Goodbye buddy");
@@ -85,7 +82,7 @@ class BartenderTest {
         orders.add("nothing");
         bartender.waitForCommands();
 
-        assertThat(outputStream.toString())
+        assertThat(bartenderResponsesStream.toString())
                 .contains("Can't read your ID son");
 
     }

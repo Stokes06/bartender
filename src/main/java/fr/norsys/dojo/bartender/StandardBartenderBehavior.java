@@ -1,12 +1,14 @@
- package fr.norsys.dojo.bartender;
+package fr.norsys.dojo.bartender;
 
+import fr.norsys.dojo.bartender.menu.OrderChoice;
 import fr.norsys.dojo.bartender.process.BeerProcess;
+import fr.norsys.dojo.bartender.process.JuiceProcess;
 import fr.norsys.dojo.bartender.process.birthday.WishHappyBirthday;
 
 import java.util.EnumMap;
 import java.util.stream.Collectors;
 
-import static fr.norsys.dojo.bartender.OrderChoice.*;
+import static fr.norsys.dojo.bartender.menu.OrderChoice.*;
 
 public class StandardBartenderBehavior extends BartenderBehavior {
 
@@ -29,7 +31,7 @@ public class StandardBartenderBehavior extends BartenderBehavior {
     private void initMenuCommands() {
         commandProcessMap = new EnumMap<>(OrderChoice.class);
 
-        commandProcessMap.put(JUICE, () -> System.out.println("Bartender gives you a nice juice, refreshing !"));
+        commandProcessMap.put(JUICE, new JuiceProcess(communicationInterface));
         commandProcessMap.put(BEER, new BeerProcess(communicationInterface, birthdateBehavior));
         commandProcessMap.put(SODA, () -> System.out.println("Bartender gives you soda !"));
         commandProcessMap.put(NOTHING, this.bartender::stopService);

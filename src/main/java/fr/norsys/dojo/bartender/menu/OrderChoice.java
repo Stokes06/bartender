@@ -1,4 +1,4 @@
-package fr.norsys.dojo.bartender;
+package fr.norsys.dojo.bartender.menu;
 
 import java.util.Arrays;
 
@@ -29,4 +29,5 @@ public enum OrderChoice {
                 .findAny()
                 .orElse(BAD_CHOICE);
     }
+
 }

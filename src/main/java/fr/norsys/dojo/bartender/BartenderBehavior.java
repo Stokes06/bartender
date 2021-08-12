@@ -1,5 +1,6 @@
 package fr.norsys.dojo.bartender;
 
+import fr.norsys.dojo.bartender.menu.OrderChoice;
 import fr.norsys.dojo.bartender.process.CommandProcess;
 import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
 

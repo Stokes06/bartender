@@ -20,8 +20,8 @@ Each step should be done before starting the next one :
 - &#10004; test existing code (could require some refactoring beforehand)
 - &#10004; add new drink : soda
 - &#10004; Bartender wishes you a happy birthday
-- add 4 types of juices : Papaya, Pomegranate, Banana, Cucumber
-- when asking for non-existing juice, bartender should ask again 2 times, then go back to the beginning
+- &#10004; add 4 types of juices : Papaya, Pomegranate, Banana, Cucumber
+- &#10004; when asking for non-existing juice, bartender should ask again 2 times, then go back to the beginning
 - add new drink : red wine (18 years old minimum restriction applies)
 - add new drink : Virgin bloody marry (14 years old minimum restriction applies)
 - add a wallet with random initial amount for user. You can order until you are out of money (bartender tells you're

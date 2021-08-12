@@ -33,12 +33,13 @@ class BartenderTest {
     void shouldServeJuice() {
 
         orders.add("juice");
+        orders.add("banana");
         orders.add("nothing");
         bartender.waitForCommands();
 
         assertThat(bartenderResponsesStream.toString())
                 .contains("What you want to drink : beer or juice or soda ? Or nothing if you want to go")
-                .contains("Bartender gives you a nice juice, refreshing !")
+                .contains("Bartender gives you a banana juice")
                 .contains("Goodbye buddy");
     }
 

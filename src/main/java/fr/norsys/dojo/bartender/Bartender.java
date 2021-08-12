@@ -4,6 +4,12 @@ import fr.norsys.dojo.bartender.game.GameState;
 
 public class Bartender {
 
+    // todo Bartender holds availables products here with price, vat, name
+    //  and behavior can use it to construct behavior map
+    // List<Product> products = List.of(new Product(BEER, 4.5, 18.82)...)
+
+    // maybe create a "Bar" class instead of list
+
     private final GameState gameState;
     private final BartenderBehavior bartenderBehavior;
 

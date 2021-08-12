@@ -27,6 +27,7 @@ public class StandardBartenderBehavior extends BartenderBehavior {
         commandProcessMap.put(BEER, new BeerProcess(this));
         commandProcessMap.put(SODA, () -> System.out.println("Bartender gives you soda !"));
         commandProcessMap.put(NOTHING, this.bartender::stopService);
+        commandProcessMap.put(BAD_CHOICE, () -> {});
 
         memoOptionList = createOptionList();
     }

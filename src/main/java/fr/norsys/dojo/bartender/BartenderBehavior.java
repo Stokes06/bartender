@@ -27,12 +27,11 @@ public abstract class BartenderBehavior {
     public void react() {
         String input = communicationInterface.listenCommand();
         final OrderChoice choice = OrderChoice.getFromString(input);
-        if (choice != BAD_CHOICE) {
-            commandProcessMap.get(choice).process();
-        }
+        commandProcessMap.get(choice).process();
     }
 
     public abstract void suggestOptions();
+
     public abstract void bye();
 
     public Bartender getBartender() {

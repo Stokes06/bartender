@@ -1,5 +1,6 @@
 package fr.norsys.dojo.bartender.process;
 
+import fr.norsys.dojo.bartender.process.birthday.WishHappyBirthday;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
@@ -22,7 +23,7 @@ class AskAgeTest {
                 () -> now
                         .minusYears(12)
                         .format(ISO_DATE),
-                true);
+                new WishHappyBirthday());
 
         final boolean isOver18 = askAge.askAge(18, now);
 
@@ -40,7 +41,7 @@ class AskAgeTest {
                 () -> now
                         .minusYears(12)
                         .format(ISO_DATE),
-                false);
+                (a, b) -> {});
 
         final boolean isOver18 = askAge.askAge(18, now);
 
@@ -59,7 +60,7 @@ class AskAgeTest {
                         .minusYears(50)
                         .minus(15, ChronoUnit.DAYS)
                         .format(ISO_DATE),
-                false);
+                new WishHappyBirthday());
 
         final boolean isOver18 = askAge.askAge(18, now);
 

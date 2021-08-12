@@ -2,30 +2,20 @@ package fr.norsys.dojo.bartender.process;
 
 import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.process.birthday.WishBehavior;
-import fr.norsys.dojo.bartender.process.birthday.WishHappyBirthday;
 
 import java.time.LocalDate;
 
-import static java.time.LocalDate.now;
 import static java.time.format.DateTimeFormatter.ISO_DATE;
 
 class AskAge {
 
     private final CommunicationInterface commandInterface;
 
-    private WishBehavior wishBehavior;
+    private final WishBehavior wishBehavior;
 
-    public AskAge(CommunicationInterface commandInterface, boolean wishHappyBirthday) {
+    public AskAge(CommunicationInterface commandInterface, WishBehavior wishBehavior) {
         this.commandInterface = commandInterface;
-        initWishBehavior(wishHappyBirthday);
-    }
-
-    private void initWishBehavior(boolean wishHappyBirthday) {
-        if (wishHappyBirthday) {
-            wishBehavior = new WishHappyBirthday();
-        } else {
-            wishBehavior = (a, b) -> {};
-        }
+        this.wishBehavior = wishBehavior;
     }
 
     public boolean askAge(int askAge, LocalDate today){

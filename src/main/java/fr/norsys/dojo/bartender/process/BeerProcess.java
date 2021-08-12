@@ -11,7 +11,7 @@ public class BeerProcess implements CommandProcess {
     private final AskAge askForAge;
 
     public BeerProcess(BartenderBehavior bartenderBehavior) {
-        askForAge = new AskAge(bartenderBehavior.getCommunicationInterface(), bartenderBehavior.doesWishHappyBirthday());
+        askForAge = new AskAge(bartenderBehavior.getCommunicationInterface(), bartenderBehavior.getWishBehavior());
     }
 
     @Override

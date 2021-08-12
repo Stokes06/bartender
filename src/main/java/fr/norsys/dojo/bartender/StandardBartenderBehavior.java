@@ -1,6 +1,7 @@
 package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.process.BeerProcess;
+import fr.norsys.dojo.bartender.process.birthday.WishHappyBirthday;
 
 import java.util.EnumMap;
 import java.util.stream.Collectors;
@@ -11,13 +12,14 @@ public class StandardBartenderBehavior extends BartenderBehavior {
 
     private String memoOptionList;
 
-    StandardBartenderBehavior(Bartender bartender, CommunicationInterface commandInterface) {
+    StandardBartenderBehavior(Bartender bartender,
+                              CommunicationInterface commandInterface) {
         super(bartender, commandInterface);
     }
 
     @Override
-    protected void initProcessesMap() {
-        wishHappyBirthday = true;
+    protected void onPlay() {
+        wishBehavior = new WishHappyBirthday();
 
         commandProcessMap = new EnumMap<>(OrderChoice.class);
 

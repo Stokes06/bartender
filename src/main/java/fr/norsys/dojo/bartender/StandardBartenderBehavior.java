@@ -1,4 +1,4 @@
-package fr.norsys.dojo.bartender;
+ package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.process.BeerProcess;
 import fr.norsys.dojo.bartender.process.birthday.WishHappyBirthday;
@@ -18,18 +18,23 @@ public class StandardBartenderBehavior extends BartenderBehavior {
     }
 
     @Override
-    protected void onPlay() {
-        wishBehavior = new WishHappyBirthday();
+    protected void beginPlay() {
+        birthdateBehavior = new WishHappyBirthday();
 
+        initMenuCommands();
+
+        memoOptionList = createOptionList();
+    }
+
+    private void initMenuCommands() {
         commandProcessMap = new EnumMap<>(OrderChoice.class);
 
         commandProcessMap.put(JUICE, () -> System.out.println("Bartender gives you a nice juice, refreshing !"));
-        commandProcessMap.put(BEER, new BeerProcess(this));
+        commandProcessMap.put(BEER, new BeerProcess(communicationInterface, birthdateBehavior));
         commandProcessMap.put(SODA, () -> System.out.println("Bartender gives you soda !"));
         commandProcessMap.put(NOTHING, this.bartender::stopService);
-        commandProcessMap.put(BAD_CHOICE, () -> {});
-
-        memoOptionList = createOptionList();
+        commandProcessMap.put(BAD_CHOICE, () -> {
+        });
     }
 
     @Override

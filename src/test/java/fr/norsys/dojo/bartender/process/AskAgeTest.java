@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import static java.time.format.DateTimeFormatter.ISO_DATE;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class AskAgeTest {
 
@@ -25,7 +25,7 @@ class AskAgeTest {
                         .format(ISO_DATE),
                 new WishHappyBirthday());
 
-        final boolean isOver18 = askAge.askAge(18, now);
+        final boolean isOver18 = askAge.isOlderThanAtDate(18, now);
 
         assertThat(isOver18).isFalse();
         assertThat(out.toString()).contains("Happy birthday !");
@@ -43,7 +43,7 @@ class AskAgeTest {
                         .format(ISO_DATE),
                 (a, b) -> {});
 
-        final boolean isOver18 = askAge.askAge(18, now);
+        final boolean isOver18 = askAge.isOlderThanAtDate(18, now);
 
         assertThat(isOver18).isFalse();
         assertThat(out.toString()).doesNotContain("Happy birthday !");
@@ -62,7 +62,7 @@ class AskAgeTest {
                         .format(ISO_DATE),
                 new WishHappyBirthday());
 
-        final boolean isOver18 = askAge.askAge(18, now);
+        final boolean isOver18 = askAge.isOlderThanAtDate(18, now);
 
         assertThat(isOver18).isTrue();
         assertThat(out.toString()).doesNotContain("Happy birthday !");

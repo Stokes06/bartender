@@ -1,4 +1,4 @@
-package fr.norsys.dojo.bartender;
+package fr.norsys.dojo.bartender.process;
 
 @FunctionalInterface
 public interface CommandProcess {

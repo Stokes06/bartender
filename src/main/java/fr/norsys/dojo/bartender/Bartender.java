@@ -1,18 +1,20 @@
 package fr.norsys.dojo.bartender;
 
+import fr.norsys.dojo.bartender.game.GameState;
+
 public class Bartender {
 
-    private boolean isServing = true;
-
+    private final GameState gameState;
     private final BartenderBehavior bartenderBehavior;
 
-    public Bartender(CommunicationInterface commandInterface) {
+    public Bartender(GameState gameState, CommunicationInterface commandInterface) {
+        this.gameState = gameState;
         this.bartenderBehavior = new StandardBartenderBehavior(this, commandInterface);
     }
 
     public void waitForCommands() {
 
-        while (isServing) {
+        while (gameState.isPlaying()) {
             this.bartenderBehavior.suggestOptions();
             this.bartenderBehavior.react();
         }
@@ -20,6 +22,10 @@ public class Bartender {
     }
 
     public void stopService() {
-        isServing = false;
+        this.gameState.stopGame();
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 }

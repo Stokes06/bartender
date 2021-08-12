@@ -16,18 +16,19 @@ Beer event : The bartender asks for your age ==> enter your birthdate
 REFACTORING
 ===
 Each step should be done before starting the next one :
-- correct the bugs
-- test existing code (could require some refactoring beforehand)
-- add new drink : soda
-- Bartender wishes you a happy birthday
+- &#10004; correct the bugs
+- &#10004; test existing code (could require some refactoring beforehand)
+- &#10004; add new drink : soda
+- &#10004; Bartender wishes you a happy birthday
 - add 4 types of juices : Papaya, Pomegranate, Banana, Cucumber
 - when asking for non-existing juice, bartender should ask again 2 times, then go back to the beginning
 - add new drink : red wine (18 years old minimum restriction applies)
 - add new drink : Virgin bloody marry (14 years old minimum restriction applies)
-- add a wallet with random initial amount for user. You can order until you are out of money (bartender tells you're short on cash). Prices are following :
+- add a wallet with random initial amount for user. You can order until you are out of money (bartender tells you're
+  short on cash). Prices are following :
   - juices are 2€ except for Cucumber that is 1.82€
   - beer is at 4.5€
-  - soda is at 3.42€  
+  - soda is at 3.42€
   - red wine is at 3.13€
   - Virgin bloody marry costs 6.87€
 - all prices are now considered as "without tax", add a 18.82% VAT tax

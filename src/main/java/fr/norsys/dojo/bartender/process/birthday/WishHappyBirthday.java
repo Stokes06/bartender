@@ -2,7 +2,7 @@ package fr.norsys.dojo.bartender.process.birthday;
 
 import java.time.LocalDate;
 
-public class WishHappyBirthday implements WishBehavior {
+public class WishHappyBirthday implements BirthdateBehavior {
     @Override
     public void tryToWish(LocalDate birthDate, LocalDate todayDate) {
         if (isBirthdayToday(birthDate, todayDate)) {

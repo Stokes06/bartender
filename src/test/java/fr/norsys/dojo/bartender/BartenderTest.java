@@ -1,5 +1,6 @@
 package fr.norsys.dojo.bartender;
 
+import fr.norsys.dojo.bartender.game.GameState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -22,14 +23,14 @@ class BartenderTest {
     @BeforeEach
     void setUp() {
         orders = new ArrayDeque<>();
-        bartender = new Bartender(orders::poll);
+        bartender = new Bartender(GameState.makeGameState(), orders::poll);
         // set up output written from System.out::println
         bartenderResponsesStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bartenderResponsesStream));
     }
 
     @Test
-    void shouldServeJuice() throws Exception {
+    void shouldServeJuice() {
 
         orders.add("juice");
         orders.add("nothing");
@@ -42,7 +43,7 @@ class BartenderTest {
     }
 
     @Test
-    void shouldServeBeerIfLegal() throws Exception {
+    void shouldServeBeerIfLegal() {
 
         String birthDate = generateBirthDate(true);
 
@@ -59,7 +60,7 @@ class BartenderTest {
     }
 
     @Test
-    void shouldNotServeBeerIfMinor() throws Exception {
+    void shouldNotServeBeerIfMinor() {
 
         String birthDate = generateBirthDate(false);
 

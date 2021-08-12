@@ -1,10 +1,9 @@
 package fr.norsys.dojo.bartender;
 
-import fr.norsys.dojo.bartender.process.birthday.WishBehavior;
+import fr.norsys.dojo.bartender.process.CommandProcess;
+import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
 
 import java.util.Map;
-
-import static fr.norsys.dojo.bartender.OrderChoice.BAD_CHOICE;
 
 public abstract class BartenderBehavior {
 
@@ -14,15 +13,16 @@ public abstract class BartenderBehavior {
 
     protected Map<OrderChoice, CommandProcess> commandProcessMap;
 
-    protected WishBehavior wishBehavior = (a, b) -> {};
+    protected BirthdateBehavior birthdateBehavior = (a, b) -> {
+    };
 
     BartenderBehavior(Bartender bartender, CommunicationInterface communicationInterface) {
         this.bartender = bartender;
         this.communicationInterface = communicationInterface;
-        onPlay();
+        beginPlay();
     }
 
-    protected abstract void onPlay();
+    protected abstract void beginPlay();
 
     public void react() {
         String input = communicationInterface.listenCommand();
@@ -42,7 +42,7 @@ public abstract class BartenderBehavior {
         return communicationInterface;
     }
 
-    public WishBehavior getWishBehavior() {
-        return wishBehavior;
+    public BirthdateBehavior getWishBehavior() {
+        return birthdateBehavior;
     }
 }

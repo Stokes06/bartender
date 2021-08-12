@@ -1,7 +1,7 @@
 package fr.norsys.dojo.bartender.process;
 
 import fr.norsys.dojo.bartender.CommunicationInterface;
-import fr.norsys.dojo.bartender.process.birthday.WishBehavior;
+import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
 
 import java.time.LocalDate;
 
@@ -11,20 +11,20 @@ class AskAge {
 
     private final CommunicationInterface commandInterface;
 
-    private final WishBehavior wishBehavior;
+    private final BirthdateBehavior birthdateBehavior;
 
-    public AskAge(CommunicationInterface commandInterface, WishBehavior wishBehavior) {
+    public AskAge(CommunicationInterface commandInterface, BirthdateBehavior birthdateBehavior) {
         this.commandInterface = commandInterface;
-        this.wishBehavior = wishBehavior;
+        this.birthdateBehavior = birthdateBehavior;
     }
 
-    public boolean askAge(int askAge, LocalDate today){
+    public boolean isOlderThanAtDate(int askAge, LocalDate today) {
         System.out.println("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)");
         final String birthDate = commandInterface.listenCommand();
 
         LocalDate birth = LocalDate.parse(birthDate, ISO_DATE);
 
-        wishBehavior.tryToWish(birth, today);
+        birthdateBehavior.tryToWish(birth, today);
 
         return birth.plusYears(askAge).isBefore(today);
     }

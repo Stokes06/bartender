@@ -26,7 +26,9 @@ public abstract class AgeRestrictedProcess implements CommandProcess {
     @Override
     public void process() {
         try {
-            final boolean isAuthorized = askForAge.isOlderThanAtDate(requiredAge, LocalDate.now());
+            final LocalDate today = LocalDate.now();
+            final LocalDate birthDate = askForAge.getBirthDateAndTryToWishBirthday(today);
+            boolean isAuthorized = !birthDate.plusYears(requiredAge).isAfter(today);
             if (isAuthorized) {
                 System.out.println(getSuccessMessage());
             } else {

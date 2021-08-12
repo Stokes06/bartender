@@ -35,7 +35,7 @@ class BartenderTest {
         orders.add("juice");
         orders.add("banana");
         orders.add("nothing");
-        bartender.waitForCommands();
+        bartender.beginPlay();
 
         assertThat(bartenderResponsesStream.toString())
                 .contains("What you want to drink")
@@ -51,7 +51,7 @@ class BartenderTest {
         orders.add("beer");
         orders.add(birthDate);
         orders.add("nothing");
-        bartender.waitForCommands();
+        bartender.beginPlay();
 
         assertThat(bartenderResponsesStream.toString())
                 .contains("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)")
@@ -68,7 +68,7 @@ class BartenderTest {
         orders.add("beer");
         orders.add(birthDate);
         orders.add("nothing");
-        bartender.waitForCommands();
+        bartender.beginPlay();
 
         assertThat(bartenderResponsesStream.toString())
                 .contains("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)")
@@ -82,7 +82,7 @@ class BartenderTest {
         orders.add("beer");
         orders.add("bad-date");
         orders.add("nothing");
-        bartender.waitForCommands();
+        bartender.beginPlay();
 
         assertThat(bartenderResponsesStream.toString())
                 .contains("Can't read your ID son");

@@ -12,11 +12,11 @@ public class Game {
     }
 
     public void beginPlay(String[] args) {
-        System.out.println("Game started with args" + Arrays.toString(args));
+        System.out.println("Game started with args " + Arrays.toString(args));
         GameState gameState = GameState.makeGameState();
         try (var scanner = new Scanner(System.in)) {
             final Bartender bartender = new Bartender(gameState, scanner::nextLine);
-            bartender.waitForCommands();
+            bartender.beginPlay();
         }
     }
 }

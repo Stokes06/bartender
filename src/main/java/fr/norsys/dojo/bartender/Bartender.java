@@ -12,7 +12,7 @@ public class Bartender {
         this.bartenderBehavior = new StandardBartenderBehavior(this, commandInterface);
     }
 
-    public void waitForCommands() {
+    public void beginPlay() {
 
         while (gameState.isPlaying()) {
             this.bartenderBehavior.suggestOptions();

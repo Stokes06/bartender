@@ -18,14 +18,18 @@ class AskAge {
         this.birthdateBehavior = birthdateBehavior;
     }
 
-    public boolean isOlderThanAtDate(int askAge, LocalDate today) {
-        System.out.println("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)");
-        final String birthDate = commandInterface.listenCommand();
-
-        LocalDate birth = LocalDate.parse(birthDate, ISO_DATE);
+    public LocalDate getBirthDateAndTryToWishBirthday(LocalDate today) {
+        LocalDate birth = askBirthDate();
 
         birthdateBehavior.tryToWish(birth, today);
 
-        return birth.plusYears(askAge).isBefore(today);
+        return birth;
+    }
+
+    private LocalDate askBirthDate() {
+        System.out.println("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)");
+        final String birthDate = commandInterface.listenCommand();
+
+        return LocalDate.parse(birthDate, ISO_DATE);
     }
 }

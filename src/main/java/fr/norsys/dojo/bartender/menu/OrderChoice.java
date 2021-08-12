@@ -5,6 +5,8 @@ import java.util.Arrays;
 public enum OrderChoice {
     JUICE("juice"),
     BEER("beer"),
+    RED_WINE("red wine"),
+    VIRGIN_BLOODY_MARY("virgin bloody marry"),
     SODA("soda"),
     NOTHING("nothing"),
     BAD_CHOICE("bad_choice");
@@ -30,4 +32,8 @@ public enum OrderChoice {
                 .orElse(BAD_CHOICE);
     }
 
+    @Override
+    public String toString() {
+        return orderChoiceName;
+    }
 }

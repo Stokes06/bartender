@@ -3,6 +3,8 @@ package fr.norsys.dojo.bartender;
 import fr.norsys.dojo.bartender.menu.OrderChoice;
 import fr.norsys.dojo.bartender.process.BeerProcess;
 import fr.norsys.dojo.bartender.process.JuiceProcess;
+import fr.norsys.dojo.bartender.process.RedWineProcess;
+import fr.norsys.dojo.bartender.process.VirginBloodyMarryProcess;
 import fr.norsys.dojo.bartender.process.birthday.WishHappyBirthday;
 
 import java.util.EnumMap;
@@ -33,10 +35,11 @@ public class StandardBartenderBehavior extends BartenderBehavior {
 
         commandProcessMap.put(JUICE, new JuiceProcess(communicationInterface));
         commandProcessMap.put(BEER, new BeerProcess(communicationInterface, birthdateBehavior));
+        commandProcessMap.put(RED_WINE, new RedWineProcess(communicationInterface, birthdateBehavior));
+        commandProcessMap.put(VIRGIN_BLOODY_MARY, new VirginBloodyMarryProcess(communicationInterface, birthdateBehavior));
         commandProcessMap.put(SODA, () -> System.out.println("Bartender gives you soda !"));
         commandProcessMap.put(NOTHING, this.bartender::stopService);
-        commandProcessMap.put(BAD_CHOICE, () -> {
-        });
+        commandProcessMap.put(BAD_CHOICE, () -> {});
     }
 
     @Override
@@ -49,7 +52,7 @@ public class StandardBartenderBehavior extends BartenderBehavior {
         System.out.println("Goodbye buddy");
     }
 
-    private String createOptionList(){
+    private String createOptionList() {
         return commandProcessMap.keySet()
                 .stream()
                 .filter(OrderChoice::isMenuChoice)

@@ -3,30 +3,12 @@ package fr.norsys.dojo.bartender.process;
 import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+import static fr.norsys.dojo.bartender.menu.OrderChoice.BEER;
 
-public class BeerProcess implements CommandProcess {
-
-    private final AskAge askForAge;
+public class BeerProcess extends AgeRestrictedProcess {
 
     public BeerProcess(CommunicationInterface communicationInterface, BirthdateBehavior birthdateBehavior) {
-        askForAge = new AskAge(communicationInterface, birthdateBehavior);
+        super(communicationInterface, birthdateBehavior);
+        this.product = BEER;
     }
-
-    @Override
-    public void process() {
-        try {
-            final boolean isLegal = askForAge.isOlderThanAtDate(18, LocalDate.now());
-            if (isLegal) {
-                System.out.println("Bartender gives you a beer, drink in moderation !");
-            } else {
-                System.out.println("You can't have a beer kiddo");
-            }
-        }catch (DateTimeParseException ex) {
-            System.out.println("Can't read your ID son");
-        }
-
-    }
-
 }

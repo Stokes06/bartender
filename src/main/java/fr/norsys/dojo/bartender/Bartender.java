@@ -1,28 +1,29 @@
 package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.game.GameState;
+import fr.norsys.dojo.bartender.menu.Drink;
+import fr.norsys.dojo.bartender.menu.DrinkType;
 
 public class Bartender {
 
-    // todo Bartender holds availables products here with price, vat, name
-    //  and behavior can use it to construct behavior map
-    // List<Product> products = List.of(new Product(BEER, 4.5, 18.82)...)
-
-    // maybe create a "Bar" class instead of list
-
     private final GameState gameState;
     private final BartenderBehavior bartenderBehavior;
+    private final Bar bar;
 
-    public Bartender(GameState gameState, CommunicationInterface commandInterface) {
+    public Bartender(GameState gameState,
+                     Bar bar,
+                     CommunicationInterface commandInterface) {
         this.gameState = gameState;
+        this.bar = bar;
         this.bartenderBehavior = new StandardBartenderBehavior(this, commandInterface);
     }
 
     public void beginPlay() {
 
+        this.bartenderBehavior.beginPlay();
+
         while (gameState.isPlaying()) {
-            this.bartenderBehavior.suggestOptions();
-            this.bartenderBehavior.react();
+            this.bartenderBehavior.listenCommand();
         }
         this.bartenderBehavior.bye();
     }
@@ -33,5 +34,9 @@ public class Bartender {
 
     public GameState getGameState() {
         return gameState;
+    }
+
+    public Bar getBar() {
+        return bar;
     }
 }

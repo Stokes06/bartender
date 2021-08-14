@@ -23,7 +23,7 @@ class BartenderTest {
     @BeforeEach
     void setUp() {
         orders = new ArrayDeque<>();
-        bartender = new Bartender(GameState.makeGameState(), orders::poll);
+        bartender = new Bartender(GameState.makeGameState(), Bar.makeBar(), orders::poll);
         // set up output written from System.out::println
         bartenderResponsesStream = new ByteArrayOutputStream();
         System.setOut(new PrintStream(bartenderResponsesStream));
@@ -38,7 +38,7 @@ class BartenderTest {
         bartender.beginPlay();
 
         assertThat(bartenderResponsesStream.toString())
-                .contains("What you want to drink")
+                .contains("you can choose between")
                 .contains("Bartender gives you a banana juice")
                 .contains("Goodbye buddy");
     }

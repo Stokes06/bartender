@@ -1,6 +1,7 @@
 package fr.norsys.dojo.bartender.menu;
 
 import static fr.norsys.dojo.bartender.menu.DrinkType.ALCOHOL;
+import static fr.norsys.dojo.bartender.menu.DrinkType.JUICE;
 
 public class Drink {
     private final DrinkType drinkType;
@@ -36,5 +37,9 @@ public class Drink {
 
     public boolean containsAlcohol() {
         return drinkType == ALCOHOL;
+    }
+
+    public boolean isJuice() {
+        return drinkType == JUICE;
     }
 }

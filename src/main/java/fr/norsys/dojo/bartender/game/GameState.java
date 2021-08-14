@@ -1,10 +1,6 @@
 package fr.norsys.dojo.bartender.game;
 
-import java.time.LocalDateTime;
-
 public class GameState {
-
-    private LocalDateTime startDateTime;
 
     private boolean isPlaying;
 
@@ -15,12 +11,7 @@ public class GameState {
     }
 
     void beginPlay() {
-        this.startDateTime = LocalDateTime.now();
         this.isPlaying = true;
-    }
-
-    public LocalDateTime getStartDateTime() {
-        return startDateTime;
     }
 
     public void stopGame() {

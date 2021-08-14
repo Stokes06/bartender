@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import static java.time.format.DateTimeFormatter.ISO_DATE;
 
 public class AgeRestrictedDecorator implements BehaviorTreeDecorator {
-    CommunicationInterface communicationInterface;
+    private final CommunicationInterface communicationInterface;
     private final BirthdateBehavior birthdateBehavior;
     private final int requiredAge;
     private final String drink;

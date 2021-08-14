@@ -55,7 +55,7 @@ class BartenderTest {
 
         assertThat(bartenderResponsesStream.toString())
                 .contains("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)")
-                .contains("Bartender gives you a beer, drink in moderation !")
+                .contains("Bartender gives you a beer, drink with moderation !")
                 .contains("Goodbye buddy");
 
     }
@@ -86,6 +86,26 @@ class BartenderTest {
 
         assertThat(bartenderResponsesStream.toString())
                 .contains("Can't read your ID son");
+
+    }
+
+    @Test
+    void shouldAskTwoMoreTimeOnJuiceIfNotUnderstood() {
+        orders.add("juice");
+        orders.add("bad");
+        orders.add("bad");
+        orders.add("bad");
+        orders.add("bad");
+        orders.add("bad");
+        orders.add("nothing");
+        bartender.beginPlay();
+
+        assertThat(bartenderResponsesStream.toString())
+                .contains("you can choose between beer or red wine or virgin bloody marry or soda or juice or nothing" + System.lineSeparator() +
+                        "you can choose between papaya or pomegranate or banana or cucumber" + System.lineSeparator() +
+                        "you can choose between papaya or pomegranate or banana or cucumber" + System.lineSeparator() +
+                        "you can choose between papaya or pomegranate or banana or cucumber" + System.lineSeparator() +
+                        "you can choose between beer or red wine or virgin bloody marry or soda or juice or nothing");
 
     }
 }

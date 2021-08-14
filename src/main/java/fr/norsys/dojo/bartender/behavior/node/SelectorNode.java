@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class SelectorNode extends BehaviorNode {
 
-    List<BehaviorNode> children = new ArrayList<>();
+    private final List<BehaviorNode> children = new ArrayList<>();
 
     private int maxAttempts = 1;
 

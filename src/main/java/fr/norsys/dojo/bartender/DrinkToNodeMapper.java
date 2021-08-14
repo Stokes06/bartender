@@ -1,14 +1,9 @@
 package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.behavior.decorator.AgeRestrictedDecorator;
-import fr.norsys.dojo.bartender.behavior.decorator.BehaviorTreeDecorator;
 import fr.norsys.dojo.bartender.behavior.node.LeafNode;
 import fr.norsys.dojo.bartender.menu.Drink;
-import fr.norsys.dojo.bartender.menu.DrinkType;
 import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DrinkToNodeMapper {
 
@@ -21,7 +16,7 @@ public class DrinkToNodeMapper {
         this.communicationInterface = communicationInterface;
     }
 
-    public LeafNode map(Drink drink) {
+    public LeafNode mapToLeafNode(Drink drink) {
         final LeafNode.Builder builder = LeafNode.builder()
                 .communicationInterface(communicationInterface)
                 .commandProcess(() -> System.out.println(getMessage(drink)))
@@ -35,9 +30,11 @@ public class DrinkToNodeMapper {
     }
 
     private String getMessage(Drink drink) {
-        String message = "Bartender gives you a " + drink.getLabel() ;
+        String message = "Bartender gives you a " + drink.getLabel();
         if (drink.containsAlcohol()) {
-            message += ", drink with moderation!";
+            message += ", drink with moderation !";
+        } else if (drink.isJuice()) {
+            message += " juice";
         }
         return message;
     }

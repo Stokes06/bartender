@@ -1,8 +1,6 @@
 package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.game.GameState;
-import fr.norsys.dojo.bartender.menu.Drink;
-import fr.norsys.dojo.bartender.menu.DrinkType;
 
 public class Bartender {
 
@@ -30,10 +28,6 @@ public class Bartender {
 
     public void stopService() {
         this.gameState.stopGame();
-    }
-
-    public GameState getGameState() {
-        return gameState;
     }
 
     public Bar getBar() {

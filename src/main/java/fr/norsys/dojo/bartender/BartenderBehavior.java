@@ -1,11 +1,9 @@
 package fr.norsys.dojo.bartender;
 
+import fr.norsys.dojo.bartender.behavior.node.LeafNode;
 import fr.norsys.dojo.bartender.behavior.node.SelectorNode;
-import fr.norsys.dojo.bartender.menu.OrderChoice;
-import fr.norsys.dojo.bartender.process.CommandProcess;
+import fr.norsys.dojo.bartender.menu.DrinkType;
 import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
-
-import java.util.Map;
 
 public abstract class BartenderBehavior {
 
@@ -14,24 +12,52 @@ public abstract class BartenderBehavior {
 
     protected final CommunicationInterface communicationInterface;
 
-    protected Map<OrderChoice, CommandProcess> commandProcessMap;
-
-    protected BirthdateBehavior birthdateBehavior = (a, b) -> {
-    };
+    protected BirthdateBehavior birthdateBehavior = (a, b) -> {};
 
     BartenderBehavior(Bartender bartender, CommunicationInterface communicationInterface) {
         this.bartender = bartender;
         this.communicationInterface = communicationInterface;
-        beginPlay();
     }
 
     protected abstract void beginPlay();
 
     public void listenCommand() {
-//        String input = communicationInterface.listenCommand();
-//        final OrderChoice choice = OrderChoice.getFromString(input);
-//        commandProcessMap.get(choice).onGranted();
         this.behaviorTree.run();
+    }
+
+    protected void initBehaviorTree() {
+
+        behaviorTree = new SelectorNode(communicationInterface);
+
+        DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(birthdateBehavior, communicationInterface);
+
+        final Bar bar = this.bartender.getBar();
+
+        bar.getDrinks().stream()
+                .filter(drink -> drink.getDrinkType() != DrinkType.JUICE)
+                .map(drinkToNodeMapper::mapToLeafNode)
+                .forEach(behaviorTree::addNode);
+
+
+        final SelectorNode juicesNode = createJuiceSelectorWithLeafNodes(drinkToNodeMapper, bar);
+
+        behaviorTree
+                .addNode(
+                        juicesNode
+                )
+                .addNode(new LeafNode(communicationInterface, "nothing", this.bartender::stopService));
+
+    }
+
+
+    private SelectorNode createJuiceSelectorWithLeafNodes(DrinkToNodeMapper drinkToNodeMapper, Bar bar) {
+        final SelectorNode juiceSelectorNode = new SelectorNode(communicationInterface, "juice", 3);
+
+        bar.getDrinks().stream()
+                .filter(drink -> drink.getDrinkType() == DrinkType.JUICE)
+                .map(drinkToNodeMapper::mapToLeafNode)
+                .forEach(juiceSelectorNode::addNode);
+        return juiceSelectorNode;
     }
 
     public abstract void bye();

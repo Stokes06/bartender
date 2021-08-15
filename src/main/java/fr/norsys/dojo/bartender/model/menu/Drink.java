@@ -8,7 +8,7 @@ public class Drink {
     private final String label;
     private final double price;
     private final int requiredAge;
-    private final double vat;
+    private double vat;
 
     public Drink(DrinkType drinkType, String label, double price) {
         this(drinkType, label, price, 0);
@@ -47,5 +47,9 @@ public class Drink {
 
     public double getVat() {
         return vat;
+    }
+
+    public void setVat(double vat) {
+        this.vat = vat;
     }
 }

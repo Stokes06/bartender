@@ -1,5 +1,6 @@
 package fr.norsys.dojo.bartender.behavior;
 
+import fr.norsys.dojo.bartender.behavior.service.FreeGiftService;
 import fr.norsys.dojo.bartender.model.Bar;
 import fr.norsys.dojo.bartender.model.Bartender;
 import fr.norsys.dojo.bartender.CommunicationInterface;
@@ -34,6 +35,7 @@ public abstract class BartenderBehavior {
     protected void initBehaviorTree() {
 
         behaviorTree = new SelectorNode(communicationInterface);
+        behaviorTree.addService(new FreeGiftService(gameState));
 
         DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(birthdateBehavior,
                 gameState,

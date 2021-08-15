@@ -1,14 +1,21 @@
 package fr.norsys.dojo.bartender.game;
 
 import fr.norsys.dojo.bartender.model.PlayerBank;
+import fr.norsys.dojo.bartender.model.PlayerInformation;
 
 public class GameState {
 
     private PlayerBank playerBank;
+    private PlayerInformation playerInformation;
     private boolean isPlaying;
 
-    public static GameState makeGameState(PlayerBank playerBank) {
-        final GameState gameState = new GameState();
+    public GameState(PlayerBank playerBank, PlayerInformation playerInformation) {
+        this.playerBank = playerBank;
+        this.playerInformation = playerInformation;
+    }
+
+    public static GameState makeGameState(PlayerBank playerBank, PlayerInformation playerInformation) {
+        final GameState gameState = new GameState(playerBank, playerInformation);
         gameState.playerBank = playerBank;
         gameState.beginPlay();
         return gameState;
@@ -28,5 +35,9 @@ public class GameState {
 
     public PlayerBank getPlayerBank() {
         return playerBank;
+    }
+
+    public PlayerInformation getPlayerInformation() {
+        return playerInformation;
     }
 }

@@ -30,7 +30,10 @@ public class DrinkToNodeMapper {
                 .routingKey(drink.getLabel());
 
         if (drink.containsAlcohol()) {
-            builder.addDecorator(new AgeRestrictedDecorator(communicationInterface, birthdateBehavior, drink.getRequiredAge(), drink.getLabel()));
+            builder.addDecorator(new AgeRestrictedDecorator(communicationInterface,
+                    birthdateBehavior,
+                    gameState.getPlayerInformation(),
+                    drink.getRequiredAge(), drink.getLabel()));
         }
 
         builder.addDecorator(new CashTransactionDecorator(gameState, drink));

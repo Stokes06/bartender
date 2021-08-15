@@ -31,11 +31,11 @@ public class AgeRestrictedDecorator implements BehaviorTreeDecorator {
             final LocalDate birthDate = Optional.ofNullable(playerInformation.getBirthDate())
                     .orElseGet(this::getBirthDateAndTryWishBirthDay);
 
-            final boolean test = !birthDate.plusYears(drink.getRequiredAge()).isAfter(LocalDate.now());
-            if (!test) {
+            final boolean hasRequiredAge = !birthDate.plusYears(drink.getRequiredAge()).isAfter(LocalDate.now());
+            if (!hasRequiredAge) {
                 System.out.printf("You can't have a %s kiddo %n", drink.getLabel());
             }
-            return test;
+            return hasRequiredAge;
         } catch (Exception ex) {
             System.out.println("Can't read your ID son");
         }

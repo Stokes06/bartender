@@ -1,10 +1,9 @@
 package fr.norsys.dojo.bartender.behavior.decorator;
 
-import fr.norsys.dojo.bartender.model.menu.DrinkType;
-import fr.norsys.dojo.bartender.payment.VatApplier;
 import fr.norsys.dojo.bartender.game.GameState;
 import fr.norsys.dojo.bartender.model.PlayerBank;
 import fr.norsys.dojo.bartender.model.menu.Drink;
+import fr.norsys.dojo.bartender.payment.VatApplier;
 
 public class CashTransactionDecorator implements BehaviorTreeDecorator {
 

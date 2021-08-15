@@ -1,8 +1,8 @@
 package fr.norsys.dojo.bartender.behavior.node;
 
 import fr.norsys.dojo.bartender.CommunicationInterface;
-import fr.norsys.dojo.bartender.behavior.decorator.BehaviorTreeDecorator;
 import fr.norsys.dojo.bartender.behavior.CommandProcess;
+import fr.norsys.dojo.bartender.behavior.decorator.BehaviorTreeDecorator;
 
 import java.util.ArrayList;
 import java.util.List;

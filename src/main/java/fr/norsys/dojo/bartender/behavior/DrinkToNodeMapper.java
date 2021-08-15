@@ -5,9 +5,9 @@ import fr.norsys.dojo.bartender.behavior.decorator.AgeRestrictedDecorator;
 import fr.norsys.dojo.bartender.behavior.decorator.AlcoholLimiterDecorator;
 import fr.norsys.dojo.bartender.behavior.decorator.CashTransactionDecorator;
 import fr.norsys.dojo.bartender.behavior.node.LeafNode;
+import fr.norsys.dojo.bartender.behavior.service.BirthdateBehavior;
 import fr.norsys.dojo.bartender.game.GameState;
 import fr.norsys.dojo.bartender.model.menu.Drink;
-import fr.norsys.dojo.bartender.behavior.service.BirthdateBehavior;
 
 public class DrinkToNodeMapper {
 

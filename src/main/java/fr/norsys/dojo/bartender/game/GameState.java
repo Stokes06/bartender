@@ -8,6 +8,7 @@ public class GameState {
     private PlayerBank playerBank;
     private PlayerInformation playerInformation;
     private boolean isPlaying;
+    private int orderedAlcoholsCount = 0;
 
     public GameState(PlayerBank playerBank, PlayerInformation playerInformation) {
         this.playerBank = playerBank;
@@ -16,7 +17,6 @@ public class GameState {
 
     public static GameState makeGameState(PlayerBank playerBank, PlayerInformation playerInformation) {
         final GameState gameState = new GameState(playerBank, playerInformation);
-        gameState.playerBank = playerBank;
         gameState.beginPlay();
         return gameState;
     }
@@ -39,5 +39,13 @@ public class GameState {
 
     public PlayerInformation getPlayerInformation() {
         return playerInformation;
+    }
+
+    public void incrementAlcoholCounter() {
+        ++orderedAlcoholsCount;
+    }
+
+    public int getOrderedAlcoholsCount() {
+        return orderedAlcoholsCount;
     }
 }

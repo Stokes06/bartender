@@ -15,7 +15,7 @@ public class Game {
     }
 
     public void beginPlay() {
-        double initialPlayerCash = 15.0 + new SecureRandom().nextInt(10);
+        double initialPlayerCash = 50.0 + new SecureRandom().nextInt(10);
         PlayerBank playerBank = new PlayerBank(initialPlayerCash);
         PlayerInformation playerInformation = new PlayerInformation();
         GameState gameState = GameState.makeGameState(playerBank, playerInformation);

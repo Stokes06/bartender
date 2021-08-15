@@ -3,6 +3,7 @@ package fr.norsys.dojo.bartender.behavior.decorator;
 import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.behavior.service.BirthdateBehavior;
 import fr.norsys.dojo.bartender.model.PlayerInformation;
+import fr.norsys.dojo.bartender.model.menu.Drink;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -13,17 +14,15 @@ public class AgeRestrictedDecorator implements BehaviorTreeDecorator {
     private final CommunicationInterface communicationInterface;
     private final BirthdateBehavior birthdateBehavior;
     private final PlayerInformation playerInformation;
-    private final int requiredAge;
-    private final String drink;
+    private final Drink drink;
 
     public AgeRestrictedDecorator(CommunicationInterface communicationInterface,
                                   BirthdateBehavior birthdateBehavior,
                                   PlayerInformation playerInformation,
-                                  int requiredAge, String drink) {
+                                  Drink drink) {
         this.communicationInterface = communicationInterface;
         this.birthdateBehavior = birthdateBehavior;
         this.playerInformation = playerInformation;
-        this.requiredAge = requiredAge;
         this.drink = drink;
     }
 
@@ -32,9 +31,9 @@ public class AgeRestrictedDecorator implements BehaviorTreeDecorator {
             final LocalDate birthDate = Optional.ofNullable(playerInformation.getBirthDate())
                     .orElseGet(this::getBirthDateAndTryWishBirthDay);
 
-            final boolean test = !birthDate.plusYears(requiredAge).isAfter(LocalDate.now());
+            final boolean test = !birthDate.plusYears(drink.getRequiredAge()).isAfter(LocalDate.now());
             if (!test) {
-                System.out.printf("You can't have a %s kiddo %n", drink);
+                System.out.printf("You can't have a %s kiddo %n", drink.getLabel());
             }
             return test;
         } catch (Exception ex) {

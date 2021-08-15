@@ -12,6 +12,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayDeque;
 import java.util.Queue;
+import java.util.stream.IntStream;
 
 import static fr.norsys.dojo.bartender.TestHelper.generateBirthDate;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -111,6 +112,20 @@ class BartenderTest {
                         "you can choose between papaya or pomegranate or banana or cucumber" + System.lineSeparator() +
                         "you can choose between papaya or pomegranate or banana or cucumber" + System.lineSeparator() +
                         "you can choose between beer or red wine or virgin bloody marry or soda or juice or nothing");
+
+    }
+
+    @Test
+    void shouldNotServeAlcoholAfterTheLimit() {
+        orders.add("beer");
+        orders.add(TestHelper.generateBirthDate(true));
+        IntStream.range(0, 10)
+                        .forEach(ignored -> orders.add("beer"));
+        orders.add("nothing");
+        bartender.beginPlay();
+
+        assertThat(bartenderResponsesStream.toString())
+                .contains("You have been drinking enough alcohol for today !");
 
     }
 }

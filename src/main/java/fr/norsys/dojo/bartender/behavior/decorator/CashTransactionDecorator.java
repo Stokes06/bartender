@@ -1,5 +1,6 @@
 package fr.norsys.dojo.bartender.behavior.decorator;
 
+import fr.norsys.dojo.bartender.model.menu.DrinkType;
 import fr.norsys.dojo.bartender.payment.VatApplier;
 import fr.norsys.dojo.bartender.game.GameState;
 import fr.norsys.dojo.bartender.model.PlayerBank;
@@ -22,11 +23,20 @@ public class CashTransactionDecorator implements BehaviorTreeDecorator {
 
     @Override
     public boolean test() {
+        if (canOfferDrink()){
+            System.out.println("Enjoy your gift ! (" + drink.getLabel() + ")");
+            return true;
+        }
         final double vatPrice = vatApplier.getVatPrice(drink);
         final boolean paymentSucceed = playerBank.pay(vatPrice);
         if (!paymentSucceed) {
             System.out.println("You are short on cash");
         }
         return paymentSucceed;
+    }
+
+    private boolean canOfferDrink() {
+        return gameState.isNextNonAlcoholicDrinkIsFree() &&
+                !drink.containsAlcohol();
     }
 }

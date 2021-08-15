@@ -4,6 +4,7 @@ import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.behavior.decorator.AgeRestrictedDecorator;
 import fr.norsys.dojo.bartender.behavior.decorator.AlcoholLimiterDecorator;
 import fr.norsys.dojo.bartender.behavior.decorator.CashTransactionDecorator;
+import fr.norsys.dojo.bartender.behavior.decorator.FreeGiftDecorator;
 import fr.norsys.dojo.bartender.behavior.node.LeafNode;
 import fr.norsys.dojo.bartender.game.GameState;
 import fr.norsys.dojo.bartender.model.menu.Drink;
@@ -32,6 +33,7 @@ public class DrinkToNodeMapper {
                 .communicationInterface(communicationInterface)
                 .commandProcess(() -> System.out.println(getMessage(drink)))
                 .routingKey(drink.getLabel());
+        builder.addDecorator(new FreeGiftDecorator(gameState));
 
         if (drink.containsAlcohol()) {
             builder.addDecorator(new AgeRestrictedDecorator(communicationInterface,

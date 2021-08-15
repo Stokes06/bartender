@@ -4,11 +4,10 @@ import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.behavior.BartenderBehavior;
 import fr.norsys.dojo.bartender.behavior.StandardBartenderBehavior;
 import fr.norsys.dojo.bartender.game.GameState;
-import fr.norsys.dojo.bartender.model.Bar;
 
 public class Bartender {
 
-    private final GameState gameState;
+    protected final GameState gameState;
     private final BartenderBehavior bartenderBehavior;
     private final Bar bar;
 

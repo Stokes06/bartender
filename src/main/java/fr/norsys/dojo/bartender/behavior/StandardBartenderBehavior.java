@@ -15,7 +15,7 @@ public class StandardBartenderBehavior extends BartenderBehavior {
 
     @Override
     public void beginPlay() {
-        birthdateBehavior = new WishHappyBirthday();
+        birthdateBehavior = new WishHappyBirthday(gameState);
 
         initBehaviorTree();
 

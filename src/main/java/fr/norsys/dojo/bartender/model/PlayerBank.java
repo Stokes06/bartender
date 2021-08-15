@@ -21,7 +21,7 @@ public class PlayerBank {
         }
         playerCash -= amountToPay;
         playerCash = CashAmountRounder.roundToTwoDecimal(playerCash);
-        System.out.println("remaining amount " + playerCash);
+        System.out.println("Payment received : remaining amount " + playerCash);
         return true;
     }
 

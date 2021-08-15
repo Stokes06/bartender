@@ -142,4 +142,32 @@ class BartenderTest {
                 .contains("You don't listen, you will have to leave now !")
                 .contains("Goodbye buddy");
     }
+
+    @Test
+    void shouldOfferDrinkIfNonAlcoholicAndBirthday() {
+        orders.add("beer");
+        orders.add(TestHelper.generateBirthDate(true));
+        orders.add("soda");
+        orders.add("nothing");
+        bartender.beginPlay();
+
+        assertThat(bartenderResponsesStream.toString())
+                .contains("Happy birthday ! Your next drink is free if non alcoholic !")
+                .contains("Enjoy your gift !")
+                .contains("Goodbye buddy");
+    }
+
+    @Test
+    void shouldNotOfferDrinkIfAlcoholicAndBirthday() {
+        orders.add("beer");
+        orders.add(TestHelper.generateBirthDate(true));
+        orders.add("beer");
+        orders.add("nothing");
+        bartender.beginPlay();
+
+        assertThat(bartenderResponsesStream.toString())
+                .contains("Happy birthday ! Your next drink is free if non alcoholic !")
+                .doesNotContain("Enjoy your gift !")
+                .contains("Goodbye buddy");
+    }
 }

@@ -15,7 +15,7 @@ public abstract class BartenderBehavior {
     protected SelectorNode behaviorTree;
 
     protected final CommunicationInterface communicationInterface;
-    private final GameState gameState;
+    protected final GameState gameState;
 
     protected BirthdateBehavior birthdateBehavior = (a, b) -> {};
 

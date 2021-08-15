@@ -1,4 +1,4 @@
-package fr.norsys.dojo.bartender.menu;
+package fr.norsys.dojo.bartender.model.menu;
 
 public enum DrinkType {
     ALCOHOL, JUICE, SODA

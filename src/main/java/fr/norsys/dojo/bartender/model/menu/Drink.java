@@ -1,13 +1,14 @@
-package fr.norsys.dojo.bartender.menu;
+package fr.norsys.dojo.bartender.model.menu;
 
-import static fr.norsys.dojo.bartender.menu.DrinkType.ALCOHOL;
-import static fr.norsys.dojo.bartender.menu.DrinkType.JUICE;
+import static fr.norsys.dojo.bartender.model.menu.DrinkType.ALCOHOL;
+import static fr.norsys.dojo.bartender.model.menu.DrinkType.JUICE;
 
 public class Drink {
     private final DrinkType drinkType;
     private final String label;
     private final double price;
     private final int requiredAge;
+    private final double vat;
 
     public Drink(DrinkType drinkType, String label, double price) {
         this(drinkType, label, price, 0);
@@ -17,6 +18,7 @@ public class Drink {
         this.label = label;
         this.price = price;
         this.requiredAge = requiredAge;
+        vat = 18.82;
     }
 
     public String getLabel() {
@@ -41,5 +43,9 @@ public class Drink {
 
     public boolean isJuice() {
         return drinkType == JUICE;
+    }
+
+    public double getVat() {
+        return vat;
     }
 }

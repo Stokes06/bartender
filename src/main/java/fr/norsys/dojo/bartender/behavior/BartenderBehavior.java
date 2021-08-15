@@ -1,14 +1,13 @@
 package fr.norsys.dojo.bartender.behavior;
 
-import fr.norsys.dojo.bartender.Bar;
-import fr.norsys.dojo.bartender.Bartender;
+import fr.norsys.dojo.bartender.model.Bar;
+import fr.norsys.dojo.bartender.model.Bartender;
 import fr.norsys.dojo.bartender.CommunicationInterface;
-import fr.norsys.dojo.bartender.DrinkToNodeMapper;
 import fr.norsys.dojo.bartender.behavior.node.LeafNode;
 import fr.norsys.dojo.bartender.behavior.node.SelectorNode;
 import fr.norsys.dojo.bartender.game.GameState;
-import fr.norsys.dojo.bartender.menu.DrinkType;
-import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
+import fr.norsys.dojo.bartender.model.menu.DrinkType;
+import fr.norsys.dojo.bartender.behavior.service.BirthdateBehavior;
 
 public abstract class BartenderBehavior {
 

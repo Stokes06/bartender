@@ -1,9 +1,9 @@
 package fr.norsys.dojo.bartender.behavior;
 
-import fr.norsys.dojo.bartender.Bartender;
+import fr.norsys.dojo.bartender.model.Bartender;
 import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.game.GameState;
-import fr.norsys.dojo.bartender.process.birthday.WishHappyBirthday;
+import fr.norsys.dojo.bartender.behavior.service.WishHappyBirthday;
 
 public class StandardBartenderBehavior extends BartenderBehavior {
 

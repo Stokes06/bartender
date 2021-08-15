@@ -1,4 +1,4 @@
-package fr.norsys.dojo.bartender.process.birthday;
+package fr.norsys.dojo.bartender.behavior.service;
 
 import java.time.LocalDate;
 

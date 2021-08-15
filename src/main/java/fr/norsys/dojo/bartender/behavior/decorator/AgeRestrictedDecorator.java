@@ -1,7 +1,7 @@
 package fr.norsys.dojo.bartender.behavior.decorator;
 
 import fr.norsys.dojo.bartender.CommunicationInterface;
-import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
+import fr.norsys.dojo.bartender.behavior.service.BirthdateBehavior;
 
 import java.time.LocalDate;
 

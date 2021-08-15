@@ -1,5 +1,6 @@
 package fr.norsys.dojo.bartender.game;
 
+import fr.norsys.dojo.bartender.model.PlayerBank;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

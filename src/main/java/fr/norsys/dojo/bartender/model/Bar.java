@@ -1,7 +1,7 @@
-package fr.norsys.dojo.bartender;
+package fr.norsys.dojo.bartender.model;
 
-import fr.norsys.dojo.bartender.menu.Drink;
-import fr.norsys.dojo.bartender.menu.DrinkType;
+import fr.norsys.dojo.bartender.model.menu.Drink;
+import fr.norsys.dojo.bartender.model.menu.DrinkType;
 
 import java.util.ArrayList;
 import java.util.List;

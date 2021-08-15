@@ -1,8 +1,10 @@
-package fr.norsys.dojo.bartender;
+package fr.norsys.dojo.bartender.model;
 
+import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.behavior.BartenderBehavior;
 import fr.norsys.dojo.bartender.behavior.StandardBartenderBehavior;
 import fr.norsys.dojo.bartender.game.GameState;
+import fr.norsys.dojo.bartender.model.Bar;
 
 public class Bartender {
 

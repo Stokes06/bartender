@@ -1,5 +1,7 @@
 package fr.norsys.dojo.bartender.game;
 
+import fr.norsys.dojo.bartender.model.PlayerBank;
+
 public class GameState {
 
     private PlayerBank playerBank;

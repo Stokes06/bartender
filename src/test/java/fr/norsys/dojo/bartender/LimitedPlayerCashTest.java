@@ -1,7 +1,9 @@
 package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.game.GameState;
-import fr.norsys.dojo.bartender.game.PlayerBank;
+import fr.norsys.dojo.bartender.model.Bartender;
+import fr.norsys.dojo.bartender.model.PlayerBank;
+import fr.norsys.dojo.bartender.model.Bar;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

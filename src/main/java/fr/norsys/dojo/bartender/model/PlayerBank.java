@@ -1,4 +1,4 @@
-package fr.norsys.dojo.bartender.game;
+package fr.norsys.dojo.bartender.model;
 
 public class PlayerBank {
 

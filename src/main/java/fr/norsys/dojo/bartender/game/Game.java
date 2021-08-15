@@ -1,7 +1,8 @@
 package fr.norsys.dojo.bartender.game;
 
-import fr.norsys.dojo.bartender.Bar;
-import fr.norsys.dojo.bartender.Bartender;
+import fr.norsys.dojo.bartender.model.Bar;
+import fr.norsys.dojo.bartender.model.Bartender;
+import fr.norsys.dojo.bartender.model.PlayerBank;
 
 import java.security.SecureRandom;
 import java.util.Scanner;

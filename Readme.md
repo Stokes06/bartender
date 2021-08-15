@@ -34,6 +34,6 @@ Each step should be done before starting the next one :
 - &#10004; all prices are now considered as "without tax", add a 18.82% VAT tax
 - &#10004; Bartender remembers you ! You don't have to give your ID everytime birthdate
 - &#10004; Bartender refuses to serve alcohol after you got more than 10 alcoholic drinks
-- Bartender wishes you a happy birthday, and the first drink is free if non-alcoholic
+- &#10004; Bartender wishes you a happy birthday, and the first drink is free if non-alcoholic
 - &#10004; Bartender kicks you out if you keep asking for alcohol after he refuses to serve you (ask again 3 times and you are out)
 - &#10004; VAT tax varies with product : juices are at 12% (exception for banana et 3%), soda is at 5%, alcoholic beverages are at 20%

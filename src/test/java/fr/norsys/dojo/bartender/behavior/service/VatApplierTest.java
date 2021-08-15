@@ -2,6 +2,7 @@ package fr.norsys.dojo.bartender.behavior.service;
 
 import fr.norsys.dojo.bartender.model.menu.Drink;
 import fr.norsys.dojo.bartender.model.menu.DrinkType;
+import fr.norsys.dojo.bartender.payment.VatApplier;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

@@ -1,5 +1,7 @@
 package fr.norsys.dojo.bartender.model;
 
+import fr.norsys.dojo.bartender.payment.CashAmountRounder;
+
 public class PlayerBank {
 
     private double playerCash;
@@ -18,6 +20,7 @@ public class PlayerBank {
             return false;
         }
         playerCash -= amountToPay;
+        playerCash = CashAmountRounder.roundToTwoDecimal(playerCash);
         System.out.println("remaining amount " + playerCash);
         return true;
     }

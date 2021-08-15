@@ -1,6 +1,6 @@
 package fr.norsys.dojo.bartender.behavior.decorator;
 
-import fr.norsys.dojo.bartender.behavior.service.VatApplier;
+import fr.norsys.dojo.bartender.payment.VatApplier;
 import fr.norsys.dojo.bartender.game.GameState;
 import fr.norsys.dojo.bartender.model.PlayerBank;
 import fr.norsys.dojo.bartender.model.menu.Drink;

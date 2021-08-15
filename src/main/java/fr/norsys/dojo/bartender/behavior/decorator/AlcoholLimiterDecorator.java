@@ -20,6 +20,13 @@ public class AlcoholLimiterDecorator implements BehaviorTreeDecorator{
     @Override
     public boolean test() {
         final int alcoholsCount = gameState.getOrderedAlcoholsCount();
+        /* TODO : dynamically change the bartender behavior when > 10 alcohol so we don't have all this complexity
+        * -> create two alcohol behavior
+        * pass the behavior in parameter
+        * 
+        * pass in parameter a method reference to change the behavior : bartender.setAlcoholBehavior(new DoNotServeAlcoholAndKickIfInsist())
+        * this decorator will become super simple
+        */
         if (drinkToMuchAlcohol(alcoholsCount)) {
             if(askTooMuchAfterBartenderSaidNo(gameState.getRetryAfterBartenderSaidNo())){
                 System.out.println("You don't listen, you will have to leave now !");

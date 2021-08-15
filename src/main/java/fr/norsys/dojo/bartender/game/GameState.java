@@ -9,6 +9,7 @@ public class GameState {
     private PlayerInformation playerInformation;
     private boolean isPlaying;
     private int orderedAlcoholsCount = 0;
+    private int retryAfterBartenderSaidNo = 0;
 
     public GameState(PlayerBank playerBank, PlayerInformation playerInformation) {
         this.playerBank = playerBank;
@@ -47,5 +48,13 @@ public class GameState {
 
     public int getOrderedAlcoholsCount() {
         return orderedAlcoholsCount;
+    }
+
+    public int getRetryAfterBartenderSaidNo() {
+        return retryAfterBartenderSaidNo;
+    }
+
+    public void incrementRetryAfterBartender() {
+        ++retryAfterBartenderSaidNo;
     }
 }

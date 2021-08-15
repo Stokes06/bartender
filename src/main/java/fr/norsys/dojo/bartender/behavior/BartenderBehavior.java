@@ -35,7 +35,10 @@ public abstract class BartenderBehavior {
 
         behaviorTree = new SelectorNode(communicationInterface);
 
-        DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(birthdateBehavior, gameState, communicationInterface);
+        DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(birthdateBehavior,
+                gameState,
+                bartender::stopService,
+                communicationInterface);
 
         final Bar bar = this.bartender.getBar();
 

@@ -128,4 +128,18 @@ class BartenderTest {
                 .contains("You have been drinking enough alcohol for today !");
 
     }
+
+    @Test
+    void shouldKickYouOutAfterTooManyAlcoholRetry() {
+        orders.add("beer");
+        orders.add(TestHelper.generateBirthDate(true));
+        IntStream.range(0, 10 + 3)
+                        .forEach(ignored -> orders.add("beer"));
+        bartender.beginPlay();
+
+        assertThat(bartenderResponsesStream.toString())
+                .contains("You have been drinking enough alcohol for today !")
+                .contains("You don't listen, you will have to leave now !")
+                .contains("Goodbye buddy");
+    }
 }

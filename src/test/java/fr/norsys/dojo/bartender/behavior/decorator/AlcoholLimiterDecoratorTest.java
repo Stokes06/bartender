@@ -22,7 +22,7 @@ class AlcoholLimiterDecoratorTest {
                 new PlayerInformation()
         );
 
-        alcoholLimiterDecorator = new AlcoholLimiterDecorator(gameState);
+        alcoholLimiterDecorator = new AlcoholLimiterDecorator(gameState, () -> {});
     }
 
     @Test

@@ -2,10 +2,12 @@ package fr.norsys.dojo.bartender.game;
 
 public class GameState {
 
+    private PlayerBank playerBank;
     private boolean isPlaying;
 
-    public static GameState makeGameState() {
+    public static GameState makeGameState(PlayerBank playerBank) {
         final GameState gameState = new GameState();
+        gameState.playerBank = playerBank;
         gameState.beginPlay();
         return gameState;
     }
@@ -20,5 +22,9 @@ public class GameState {
 
     public boolean isPlaying() {
         return isPlaying;
+    }
+
+    public PlayerBank getPlayerBank() {
+        return playerBank;
     }
 }

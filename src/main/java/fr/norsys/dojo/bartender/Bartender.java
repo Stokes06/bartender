@@ -1,5 +1,7 @@
 package fr.norsys.dojo.bartender;
 
+import fr.norsys.dojo.bartender.behavior.BartenderBehavior;
+import fr.norsys.dojo.bartender.behavior.StandardBartenderBehavior;
 import fr.norsys.dojo.bartender.game.GameState;
 
 public class Bartender {
@@ -13,7 +15,7 @@ public class Bartender {
                      CommunicationInterface commandInterface) {
         this.gameState = gameState;
         this.bar = bar;
-        this.bartenderBehavior = new StandardBartenderBehavior(this, commandInterface);
+        this.bartenderBehavior = new StandardBartenderBehavior(this, commandInterface, gameState);
     }
 
     public void beginPlay() {

@@ -1,7 +1,12 @@
-package fr.norsys.dojo.bartender;
+package fr.norsys.dojo.bartender.behavior;
 
+import fr.norsys.dojo.bartender.Bar;
+import fr.norsys.dojo.bartender.Bartender;
+import fr.norsys.dojo.bartender.CommunicationInterface;
+import fr.norsys.dojo.bartender.DrinkToNodeMapper;
 import fr.norsys.dojo.bartender.behavior.node.LeafNode;
 import fr.norsys.dojo.bartender.behavior.node.SelectorNode;
+import fr.norsys.dojo.bartender.game.GameState;
 import fr.norsys.dojo.bartender.menu.DrinkType;
 import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
 
@@ -11,15 +16,17 @@ public abstract class BartenderBehavior {
     protected SelectorNode behaviorTree;
 
     protected final CommunicationInterface communicationInterface;
+    private final GameState gameState;
 
     protected BirthdateBehavior birthdateBehavior = (a, b) -> {};
 
-    BartenderBehavior(Bartender bartender, CommunicationInterface communicationInterface) {
+    BartenderBehavior(Bartender bartender, CommunicationInterface communicationInterface, GameState gameState) {
         this.bartender = bartender;
         this.communicationInterface = communicationInterface;
+        this.gameState = gameState;
     }
 
-    protected abstract void beginPlay();
+    public abstract void beginPlay();
 
     public void listenCommand() {
         this.behaviorTree.run();
@@ -29,7 +36,7 @@ public abstract class BartenderBehavior {
 
         behaviorTree = new SelectorNode(communicationInterface);
 
-        DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(birthdateBehavior, communicationInterface);
+        DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(birthdateBehavior, gameState, communicationInterface);
 
         final Bar bar = this.bartender.getBar();
 

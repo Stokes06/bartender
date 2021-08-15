@@ -1,18 +1,24 @@
 package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.behavior.decorator.AgeRestrictedDecorator;
+import fr.norsys.dojo.bartender.behavior.decorator.CashTransactionDecorator;
 import fr.norsys.dojo.bartender.behavior.node.LeafNode;
+import fr.norsys.dojo.bartender.game.GameState;
 import fr.norsys.dojo.bartender.menu.Drink;
 import fr.norsys.dojo.bartender.process.birthday.BirthdateBehavior;
 
 public class DrinkToNodeMapper {
 
     private final BirthdateBehavior birthdateBehavior;
+    private final GameState gameState;
     private final CommunicationInterface communicationInterface;
 
-    public DrinkToNodeMapper(BirthdateBehavior birthdateBehavior, CommunicationInterface communicationInterface) {
+    public DrinkToNodeMapper(BirthdateBehavior birthdateBehavior,
+                             GameState gameState,
+                             CommunicationInterface communicationInterface) {
 
         this.birthdateBehavior = birthdateBehavior;
+        this.gameState = gameState;
         this.communicationInterface = communicationInterface;
     }
 
@@ -25,6 +31,8 @@ public class DrinkToNodeMapper {
         if (drink.containsAlcohol()) {
             builder.addDecorator(new AgeRestrictedDecorator(communicationInterface, birthdateBehavior, drink.getRequiredAge(), drink.getLabel()));
         }
+
+        builder.addDecorator(new CashTransactionDecorator(gameState, drink));
 
         return builder.build();
     }

@@ -3,6 +3,7 @@ package fr.norsys.dojo.bartender.behavior;
 import fr.norsys.dojo.bartender.CommunicationInterface;
 import fr.norsys.dojo.bartender.behavior.node.LeafNode;
 import fr.norsys.dojo.bartender.behavior.node.SelectorNode;
+import fr.norsys.dojo.bartender.behavior.service.AlcoholLimitBehavior;
 import fr.norsys.dojo.bartender.behavior.service.BirthdateBehavior;
 import fr.norsys.dojo.bartender.behavior.service.FreeGiftService;
 import fr.norsys.dojo.bartender.game.GameState;
@@ -19,6 +20,7 @@ public abstract class BartenderBehavior {
     protected final GameState gameState;
 
     protected BirthdateBehavior birthdateBehavior = (a, b) -> {};
+    protected AlcoholLimitBehavior alcoholLimitBehavior = () -> true;
 
     BartenderBehavior(Bartender bartender, CommunicationInterface communicationInterface, GameState gameState) {
         this.bartender = bartender;
@@ -37,9 +39,9 @@ public abstract class BartenderBehavior {
         behaviorTree = new SelectorNode(communicationInterface);
         behaviorTree.addService(new FreeGiftService(gameState));
 
-        DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(birthdateBehavior,
+        DrinkToNodeMapper drinkToNodeMapper = new DrinkToNodeMapper(
                 gameState,
-                bartender::stopService,
+                this,
                 communicationInterface);
 
         final Bar bar = this.bartender.getBar();
@@ -83,5 +85,9 @@ public abstract class BartenderBehavior {
 
     public BirthdateBehavior getWishBehavior() {
         return birthdateBehavior;
+    }
+
+    public AlcoholLimitBehavior getAlcoholLimitBehavior() {
+        return alcoholLimitBehavior;
     }
 }

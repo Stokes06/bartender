@@ -13,17 +13,16 @@ public class DrinkToNodeMapper {
 
     private final BirthdateBehavior birthdateBehavior;
     private final GameState gameState;
-    private final CommandProcess exitGameProcess;
+    private final BartenderBehavior bartenderBehavior;
     private final CommunicationInterface communicationInterface;
 
-    public DrinkToNodeMapper(BirthdateBehavior birthdateBehavior,
-                             GameState gameState,
-                             CommandProcess exitGameProcess,
+    public DrinkToNodeMapper(GameState gameState,
+                             BartenderBehavior bartenderBehavior,
                              CommunicationInterface communicationInterface) {
 
-        this.birthdateBehavior = birthdateBehavior;
+        this.birthdateBehavior = bartenderBehavior.getWishBehavior();
         this.gameState = gameState;
-        this.exitGameProcess = exitGameProcess;
+        this.bartenderBehavior = bartenderBehavior;
         this.communicationInterface = communicationInterface;
     }
 
@@ -37,8 +36,8 @@ public class DrinkToNodeMapper {
             builder.addDecorator(new AgeRestrictedDecorator(communicationInterface,
                     birthdateBehavior,
                     gameState.getPlayerInformation(),
-                   drink));
-            builder.addDecorator(new AlcoholLimiterDecorator(gameState, exitGameProcess));
+                    drink));
+            builder.addDecorator(new AlcoholLimiterDecorator(bartenderBehavior));
         }
 
         builder.addDecorator(new CashTransactionDecorator(gameState, drink));

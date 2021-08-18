@@ -15,7 +15,8 @@ public class Game {
     }
 
     public void beginPlay() {
-        double initialPlayerCash = 50.0 + new SecureRandom().nextInt(10);
+        double initialPlayerCash = 250.0 + new SecureRandom().nextInt(10);
+        System.out.printf("Starting game with %.2f €%n", initialPlayerCash);
         PlayerBank playerBank = new PlayerBank(initialPlayerCash);
         PlayerInformation playerInformation = new PlayerInformation();
         GameState gameState = GameState.makeGameState(playerBank, playerInformation);

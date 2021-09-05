@@ -4,6 +4,7 @@ import fr.norsys.dojo.bartender.model.Bar;
 import fr.norsys.dojo.bartender.model.Bartender;
 import fr.norsys.dojo.bartender.model.PlayerBank;
 import fr.norsys.dojo.bartender.model.PlayerInformation;
+import fr.norsys.dojo.bartender.payment.Money;
 
 import java.security.SecureRandom;
 import java.util.Scanner;
@@ -15,8 +16,8 @@ public class Game {
     }
 
     public void beginPlay() {
-        double initialPlayerCash = 250.0 + new SecureRandom().nextInt(10);
-        System.out.printf("Starting game with %.2f €%n", initialPlayerCash);
+        Money initialPlayerCash = Money.of(250.0 + new SecureRandom().nextInt(10));
+        System.out.printf("Starting game with %.2f €%n", initialPlayerCash.getAmount());
         PlayerBank playerBank = new PlayerBank(initialPlayerCash);
         PlayerInformation playerInformation = new PlayerInformation();
         GameState gameState = GameState.makeGameState(playerBank, playerInformation);

@@ -1,10 +1,11 @@
 package fr.norsys.dojo.bartender;
 
 import fr.norsys.dojo.bartender.game.GameState;
+import fr.norsys.dojo.bartender.model.Bar;
 import fr.norsys.dojo.bartender.model.Bartender;
 import fr.norsys.dojo.bartender.model.PlayerBank;
-import fr.norsys.dojo.bartender.model.Bar;
 import fr.norsys.dojo.bartender.model.PlayerInformation;
+import fr.norsys.dojo.bartender.payment.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -26,7 +27,7 @@ class LimitedPlayerCashTest {
     @BeforeEach
     void setUp() {
         orders = new ArrayDeque<>();
-        final PlayerBank infiniteAmountPlayerBank = new PlayerBank(10.0);
+        final PlayerBank infiniteAmountPlayerBank = new PlayerBank(Money.of(10.0));
         bartender = new Bartender(GameState.makeGameState(infiniteAmountPlayerBank, new PlayerInformation()), Bar.makeBar(), orders::poll);
         // set up output written from System.out::println
         bartenderResponsesStream = new ByteArrayOutputStream();

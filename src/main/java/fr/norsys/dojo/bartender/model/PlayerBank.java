@@ -1,31 +1,29 @@
 package fr.norsys.dojo.bartender.model;
 
-import fr.norsys.dojo.bartender.payment.CashAmountRounder;
+import fr.norsys.dojo.bartender.payment.Money;
 
 public class PlayerBank {
 
-    private double playerCash;
+    private Money playerCash;
 
-    public PlayerBank(double playerCash) {
+    public PlayerBank(Money playerCash) {
         this.playerCash = playerCash;
     }
 
     /**
-     *
-     * @param amountToPay
+     * @param amountToPay amount to pay
      * @return true only if payment succeeded
      */
-    public boolean pay(double amountToPay) {
-        if (amountToPay > playerCash) {
+    public boolean pay(Money amountToPay) {
+        if (playerCash.compareTo(amountToPay) < 0) {
             return false;
         }
-        playerCash -= amountToPay;
-        playerCash = CashAmountRounder.roundToTwoDecimal(playerCash);
+        playerCash = playerCash.subtract(amountToPay);
         System.out.println("Payment received : remaining amount " + playerCash);
         return true;
     }
 
-    public double getPlayerCash() {
+    public Money getPlayerCash() {
         return playerCash;
     }
 }

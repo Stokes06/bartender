@@ -1,0 +1,26 @@
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0">
+    <profiles>
+        <profile>
+            <id>ByPassVPN</id>
+            <properties>
+                <downloadSources>true</downloadSources>
+            </properties>
+            <repositories>
+                <repository>
+                    <id>central</id>
+                    <url>https://repo.maven.apache.org/maven2/</url> <!-- the https you've been looking for -->
+                </repository>
+            </repositories>
+
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>central</id>
+                    <url>https://repo.maven.apache.org/maven2/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+    </profiles>
+    <activeProfiles>
+        <activeProfile>Desespoir</activeProfile>
+    </activeProfiles>
+</settings>

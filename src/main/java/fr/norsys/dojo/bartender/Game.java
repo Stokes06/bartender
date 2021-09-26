@@ -8,7 +8,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Game {
 
+    // used to write a response somewhere
     private final CommunicationOutput voice;
+    // used to accept input
     private final CommunicationInput communicationInput;
 
     public Game(CommunicationOutput voice, CommunicationInput communicationInput) {
@@ -23,25 +25,25 @@ public class Game {
             String input = communicationInput.getNextInput();
             if (input.equalsIgnoreCase("nothing")) {
                 voice.say("Goodbye buddy");
-                System.exit(0);
+                break;
             }
 
-            if (input.equalsIgnoreCase("juice")){
+            if (input.equalsIgnoreCase("juice")) {
                 voice.say("Bartender gives you a nice juice, refreshing !");
                 continue;
             }
 
-            if (input.equalsIgnoreCase("beer")){
+            if (input.equalsIgnoreCase("beer")) {
                 voice.say("I would need to see an ID please, what is your birthdate ? (yyyy-mm-dd)");
                 String birthDate = communicationInput.getNextInput();
                 try {
                     LocalDate birth = LocalDate.parse(birthDate, DateTimeFormatter.ISO_DATE);
-                    if (birth.plusYears(18).isBefore(LocalDate.now())){
+                    if (birth.plusYears(18).isBefore(LocalDate.now())) {
                         voice.say("Bartender gives you a beer, drink in moderation !");
                     } else {
                         voice.say("You can't have a beer kiddo");
                     }
-                } catch (Exception e){
+                } catch (Exception e) {
                     voice.say("Can't read your ID son");
                 }
             }
